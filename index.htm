@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+            var Home = Vue.extend({
+                template: '#home',
+                data: function () {
+                    return { msg: 'Hello, vue router!' }
+                }
+            })
+
+            var About = Vue.extend({ template: '#about' })
+            const routes = [
+                { path: '/home', component: Home },
+                { path: '/about', component: About }
+            ]
+
+            const router = new VueRouter({ routes })
+
+            const app = new Vue({ router }).$mount('#app')
+        });
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <router-link to="/home">home</router-link>
+            <router-link to="/about">about</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <template id="home">
+        <div>
+            <h1>Home</h1>
+            <p>{{msg}}</p>
+            <a href="http://tw.yahoo.com">Yahoo!</a><br/>
+            <a href="downloads/AlexaTool_v1.0.4.apk">APK</a>
+        </div>
+    </template>
+    <template id="about">
+        <div>
+            <h1>About</h1>
+            <p>This is the tutorial about vue-router.</p>
+        </div>
+    </template>
+</body>
+
+</html>
